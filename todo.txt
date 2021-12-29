@@ -1,0 +1,8 @@
+Démarrer le conteneur mariadbtest à chaque démarrage
+
+- Requêter la bdd pour savoir si l'idée du jour est déjà connu, si oui on incrémente son compteur,
+sinon on l'ajoute à la BDD (compteur à 1)
+
+- Afficher l'idée du jour en tête de page et les 10 précédentes en dessous
+
+- Mise en page clean
