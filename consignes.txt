@@ -1,0 +1,20 @@
+TP : 
+V1 :
+	- 1 application avec au moins 2 conteneurs docker pour tourner
+	-> on se fout du langage
+	-> 1 docker image doit être construite => 1 dockerfile
+	-> 1 fichier - compose.yml
+		- docker-compose.yml
+V2 : 
+	Même chose avec Kubernetes
+
+-> rendu dépot git : monPseudo gitlab/github/bitbucket : stalb
+mail : stephane.talbot@univ-smb.fr
+contenu : 
+- noms des binômes
+- depot git
+- CR (Lancement app + mode d'emploi)
+   |_ par ex Readme sur depot git
+
+Date limite :
+7 janvier
