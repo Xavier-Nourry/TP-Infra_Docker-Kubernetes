@@ -30,6 +30,7 @@ def hello_world():
     activity = data["activity"]
     html = "<h1>Activité du jour</h1><br><h3>" + activity + "</h3>"
     check_activity_in_db(activity)
+    generate_html()
     return html
 
 if __name__ == '__main__':
