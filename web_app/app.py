@@ -8,30 +8,40 @@ import sys
 app = Flask(__name__)
 
 
+def get_altered_lines_after_request():
+    res = 0
+    for line in cur:
+        res += 1
+    return res
+
 def check_activity_in_db(activity):
-    nb_lines = cur.execute(
-    "SELECT * FROM activities WHERE description=(%s)", (activity,))
+    cur.execute("SELECT * FROM activities WHERE description=(%s)", (activity,))
+    nb_lines = get_altered_lines_after_request()
     print("nb_lines : " + str(nb_lines))
-    if nb_lines != None:
-        query_affected_lines = cur.execute("UPDATE activities SET nbOccurrences = nbOccurrences + 1 WHERE description=?", activity)
+    if nb_lines != 0:
+        cur.execute("UPDATE activities SET nbOccurrences = nbOccurrences + 1 WHERE description=(%s)", (activity,))
         conn.commit()
         print("Update query") 
     else:
-        query_affected_lines = cur.execute("INSERT INTO activities (description, nbOccurrences) VALUES (%s, %d)", (activity, 1))
+        cur.execute("INSERT INTO activities (description, nbOccurrences) VALUES (%s, %d)", (activity, 1))
         conn.commit()
         print("Insert query")
 
+def generate_html(activity):
+    res = "<h1>Tip of the day</h1><h3>" + activity + "</h3><br><h3>All tips in time</h3>"
+    cur.execute("SELECT description, nbOccurrences FROM activities")
+    for (desc, occurrences) in cur:
+        res += "<p>{d} : {o}</p><br>".format(d=desc, o=occurrences)
+    return res
 
 @app.route("/")
 def hello_world():
     url = 'http://www.boredapi.com/api/activity/'
     response = requests.get(url)
     data = response.json()
-    activity = data["activity"]
-    html = "<h1>Activité du jour</h1><br><h3>" + activity + "</h3>"
-    check_activity_in_db(activity)
-    generate_html()
-    return html
+    activity = "Volunteer at your local food pantry"#data["activity"]
+    check_activity_in_db("Volunteer at your local food pantry")
+    return generate_html(activity)
 
 if __name__ == '__main__':
     global cur, conn
