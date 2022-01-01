@@ -39,8 +39,8 @@ def hello_world():
     url = 'http://www.boredapi.com/api/activity/'
     response = requests.get(url)
     data = response.json()
-    activity = "Volunteer at your local food pantry"#data["activity"]
-    check_activity_in_db("Volunteer at your local food pantry")
+    activity = data["activity"]
+    check_activity_in_db(activity)
     return generate_html(activity)
 
 if __name__ == '__main__':
