@@ -28,10 +28,10 @@ def check_activity_in_db(activity):
         print("Insert query")
 
 def generate_html(activity):
-    res = "<h1>Tip of the day</h1><h3>" + activity + "</h3><br><h3>All tips in time</h3>"
+    res = "<h1>Tip of the day</h1><h4>" + activity + "</h4><br><h1>All tips in time</h1>"
     cur.execute("SELECT description, nbOccurrences FROM activities")
     for (desc, occurrences) in cur:
-        res += "<p>{d} : {o}</p><br>".format(d=desc, o=occurrences)
+        res += "<h4>{d} : {o}</h4>".format(d=desc, o=occurrences)
     return res
 
 @app.route("/")
