@@ -1,0 +1,2 @@
+Création de la table :
+CREATE TABLE activities (id INT NOT NULL AUTO_INCREMENT,description VARCHAR(250) NOT NULL,nbOccurrences INT NOT NULL,PRIMARY KEY (id));
