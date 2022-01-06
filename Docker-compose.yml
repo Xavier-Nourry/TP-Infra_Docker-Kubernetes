@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  db:
+    build: ./database
+    container_name: database
+    ports:
+      - 3306:3306
+      
+  web_app:
+    build: ./web_app
+    container_name: web_app
+    ports:
+      - 5000:5000
+    depends_on:
+      - "db"
+    links:
+      - "db:database"
