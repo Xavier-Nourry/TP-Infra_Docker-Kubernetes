@@ -3,8 +3,6 @@ services:
   db:
     build: ./Docker/database
     container_name: database
-    #ports:
-    #  - 3306:3306
     volumes:
       - my-datavolume:/var/lib/mariadb
   web_app:
