@@ -1,14 +1,14 @@
 version: "3"
 services:
   db:
-    build: ./database
+    build: ./Docker/database
     container_name: database
     ports:
       - 3306:3306
     volumes:
       - my-datavolume:/var/lib/mariadb
   web_app:
-    build: ./web_app
+    build: ./Docker/web_app
     container_name: web_app
     ports:
       - 5000:5000
